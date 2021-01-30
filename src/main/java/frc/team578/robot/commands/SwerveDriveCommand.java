@@ -12,6 +12,7 @@ public class SwerveDriveCommand extends Command {
     private static final Logger log = LogManager.getLogger(SwerveDriveCommand.class);
     private static ExpoScale es;
     private static ExpoScale esRot;
+    private double profilingPowerX = 0, profilingPowerY = 0, profilingPowerA = 0;
 
     public SwerveDriveCommand() {
         requires(Robot.swerveDriveSubsystem);
@@ -32,6 +33,20 @@ public class SwerveDriveCommand extends Command {
         double str = Robot.oi.leftJoystick.getX();
 
         double rot = Robot.oi.rightJoystick.getX();
+        
+        fwd += profilingPowerX;
+        str += profilingPowerY;
+        rot += profilingPowerA;
+
+        if(fwd > 1)
+            fwd = 1;
+        if(fwd < -1)
+            fwd = -1;                   //limiter was in swervedrive code,
+        if(str > 1)                     //may or may not be needed
+            str = 1;                    // ExpoScale may or may not have an effect, 
+        if(str < -1)                    //should investigate if ExpoScale is applying a function on input strength,
+            str = -1;                   //or if its serving as a limitor
+
 
 //      fwd *= -1;
 //		str *= -1;
@@ -61,5 +76,13 @@ public class SwerveDriveCommand extends Command {
     protected void interrupted() {
         log.debug("SwerveDriveCommand Interrupted");
     }
-
+    public void setProfilingPowerX(double x){
+        profilingPowerX = x;
+    }
+    public void setProfilingPowerY(double y){
+        profilingPowerY = y;
+    }
+    public void setProfilingPowerA(double a){
+        profilingPowerA = a;
+    }
 }

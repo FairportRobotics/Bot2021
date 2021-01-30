@@ -9,11 +9,13 @@ import frc.team578.robot.subsystems.swerve.SwerveDrive;
 public class SwerveDriveSubsystem extends Subsystem implements Initializable, UpdateDashboard {
 
     private SwerveDrive swerveDrive;
+    public SwerveDriveCommand swerveDriveCommand;
 
     @Override
     protected void initDefaultCommand() {
         // This is where the swerve command starts
-        setDefaultCommand(new SwerveDriveCommand());
+        swerveDriveCommand = new SwerveDriveCommand();
+        setDefaultCommand(swerveDriveCommand);
     }
 
     @Override
