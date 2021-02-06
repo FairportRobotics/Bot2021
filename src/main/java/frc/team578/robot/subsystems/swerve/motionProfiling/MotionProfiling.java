@@ -113,7 +113,7 @@ public class MotionProfiling {
     }
     private void setBotPower(Vector2d vec, double angle){
 
-        if(vec.magnitude() > .5)
+        if(vec.magnitude() > .8)
             vec = new Vector2d(vec.x/vec.magnitude()/2, vec.y/vec.magnitude()/2);  // normalizing
         Robot.swerveDriveSubsystem.swerveDriveCommand.setProfilingPowerX(vec.x);
         Robot.swerveDriveSubsystem.swerveDriveCommand.setProfilingPowerY(vec.y);
@@ -144,5 +144,6 @@ public class MotionProfiling {
         Robot.swerveDriveSubsystem.swerveDriveCommand.setProfilingPowerY(0);
         Robot.motionProfiling.restart();
         FieldPosition.resetBotPosition();
+        FieldPosition.resetBotSpeed();
     }
 }

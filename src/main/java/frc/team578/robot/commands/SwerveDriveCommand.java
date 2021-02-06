@@ -34,9 +34,9 @@ public class SwerveDriveCommand extends Command {
 
         double rot = Robot.oi.rightJoystick.getX();
         
-        fwd += profilingPowerX;
-        str += profilingPowerY;
-        rot += profilingPowerA;
+        // fwd += profilingPowerX;
+        // str += profilingPowerY;
+        // rot += profilingPowerA;
 
         if(fwd > 1)
             fwd = 1;
@@ -53,7 +53,7 @@ public class SwerveDriveCommand extends Command {
 
         double angleDeg = Robot.gyroSubsystem.getHeading();
 
-        Robot.swerveDriveSubsystem.move(es.apply(fwd), es.apply(str), esRot.apply(rot), angleDeg);
+        Robot.swerveDriveSubsystem.move(es.apply(fwd) + profilingPowerX, es.apply(str) + profilingPowerY, esRot.apply(rot), angleDeg);
 
         SmartDashboard.putNumber("swrv.fwd", fwd);
         SmartDashboard.putNumber("swrv.str", str);

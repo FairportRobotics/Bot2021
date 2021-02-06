@@ -51,6 +51,7 @@ public class FieldPosition{
     }
     public static void periodic(){  
         botSpeed = getBotSpeedVect();
+        System.out.println(botSpeed.x + "    " + botSpeed.y);
         long currentTime = System.currentTimeMillis();
         botPos = add(botPos, vectorScale(botSpeed, ((double)(currentTime - prevTime))/1000));
         prevTime = currentTime;
