@@ -29,6 +29,7 @@ public class RobotMap {
 
     // Intake / Feeder
     public static final int INTAKE_TALON = 3;
+    public static final int AGITATOR_TALON = 7;
 
     // Climber
     public static final int PCM1 = 4;

@@ -183,6 +183,7 @@ public class Robot extends TimedRobot {
         Robot.shooterSubsystem.stop();
         Robot.swerveDriveSubsystem.stop();
         Robot.conveyorSubsystem.stop();
+        Robot.intakeSubsystem.stop();
     }
 
     @Override
