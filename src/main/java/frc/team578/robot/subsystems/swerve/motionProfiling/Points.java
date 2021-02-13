@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import frc.team578.robot.commands.*;
 
 public class Points{
-	public static final double curvesPerSec = 1.0;
-	public static final int pointsPerCurve = 10;
-	public static final double[] pidValues = {1.0, 0.0, 0.15};
+	public static final double CURVES_PER_SECOND = 1.0;
+	public static final int POINTS_PER_CURVE = 10;
+	static final double[] pidValues = {1.0, 0.0, 0.15};
 
 
 	protected static class TimedCommand{

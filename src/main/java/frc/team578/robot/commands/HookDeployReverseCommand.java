@@ -16,7 +16,7 @@ public class HookDeployReverseCommand extends Command {
 
     @Override
     protected void initialize() {
-        log.debug("Initializing HookDeployReverseCommand");
+        log.debug("Initializing HookDeployReverseCommand"); 
     }
 
     @Override
