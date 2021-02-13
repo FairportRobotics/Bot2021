@@ -58,8 +58,8 @@ public class MotionProfiling {
             manageCommands();
         }
         long time = System.currentTimeMillis();
-        double botX = FieldPosition.getBotXPosition() + botPath[0].x;
-        double botY = FieldPosition.getBotYPosition() + botPath[0].y;
+        double botX = FieldPosition.getBotXPosition() + 0*botPath[0].x;
+        double botY = FieldPosition.getBotYPosition() + 0*botPath[0].y;
 
         double px = botX - pos.x;
         double py = botY - pos.y;
@@ -94,8 +94,12 @@ public class MotionProfiling {
         prevHeading = heading;
     }
     private void managePos(int ind){
-        if(ind < botPath.length)
-            pos = botPath[ind];
+        // if(ind < botPath.length)
+        //     pos = botPath[ind];
+        long t = (System.currentTimeMillis() - timeInit);
+        double sec = ((double)t)/1000;
+        if(sec < 20)
+            pos = new Vector2d(sec, 0);
     }
     private void manageAngle(int ind){
         if(ind < botPath.length)
