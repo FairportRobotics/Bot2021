@@ -20,9 +20,9 @@ public class OI implements Initializable {
     JoystickButton rightTrigger = new JoystickButton(rightJoystick, JOYSTICK_TRIGGER_BUTTON_NUMBER);
 
     public void initialize() {
-        /* Driver */
-        leftTrigger.whenPressed(new CentricModeRobotCommand());
-        rightTrigger.whenPressed(new CentricModeFieldCommand());
+        // /* Driver */
+        // leftTrigger.whenPressed(new CentricModeRobotCommand());
+        // rightTrigger.whenPressed(new CentricModeFieldCommand());
 
         /* Operator */
         // Big Boi

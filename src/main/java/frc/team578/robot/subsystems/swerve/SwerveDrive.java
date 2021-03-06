@@ -20,28 +20,28 @@ public class SwerveDrive implements UpdateDashboard {
     private static final Logger log = LogManager.getLogger(SwerveDrive.class);
 
     // Enclosures 1-4 are the drive/steer combos
-    private final TalonSwerveEnclosure swerveEnclosureFR;
-    private final TalonSwerveEnclosure swerveEnclosureFL;
-    private final TalonSwerveEnclosure swerveEnclosureBL;
-    private final TalonSwerveEnclosure swerveEnclosureBR;
+    public static TalonSwerveEnclosure swerveEnclosureFR;
+    public static TalonSwerveEnclosure swerveEnclosureFL;
+    public static TalonSwerveEnclosure swerveEnclosureBL;
+    public static TalonSwerveEnclosure swerveEnclosureBR;
     private final frc.team578.robot.subsystems.swerve.math.SwerveMath swerveMath;
 
 
-    public SwerveDrive(TalonSwerveEnclosure swerveEnclosureFL, TalonSwerveEnclosure swerveEnclosureFR,
-                       TalonSwerveEnclosure swerveEnclosureBL, TalonSwerveEnclosure swerveEnclosureBR, double width, double length) {
+    public SwerveDrive(TalonSwerveEnclosure swerveEnclosureFLin, TalonSwerveEnclosure swerveEnclosureFRin,
+                       TalonSwerveEnclosure swerveEnclosureBLin, TalonSwerveEnclosure swerveEnclosureBRin, double width, double length) {
 
-        this.swerveEnclosureFR = swerveEnclosureFR;
-        this.swerveEnclosureFL = swerveEnclosureFL;
-        this.swerveEnclosureBL = swerveEnclosureBL;
-        this.swerveEnclosureBR = swerveEnclosureBR;
+        swerveEnclosureFR = swerveEnclosureFRin;
+        swerveEnclosureFL = swerveEnclosureFLin;
+        swerveEnclosureBL = swerveEnclosureBLin;
+        swerveEnclosureBR = swerveEnclosureBRin;  
 
         // instantiate the swerve library with a gyro provider using pigeon1
         this.swerveMath = new SwerveMath(width, length);
 
-        this.swerveEnclosureFR.orientSensor();
-        this.swerveEnclosureFL.orientSensor();
-        this.swerveEnclosureBL.orientSensor();
-        this.swerveEnclosureBR.orientSensor();
+        swerveEnclosureFR.orientSensor();
+        swerveEnclosureFL.orientSensor();
+        swerveEnclosureBL.orientSensor();
+        swerveEnclosureBR.orientSensor();
     }
 
     /**
