@@ -36,7 +36,7 @@ public class SwerveMath {
     private final double diagonal;
 
     // The scale factor to control robot maximum speed. Optional.
-    private final double SCALE_SPEED = .85;
+    private final double SCALE_SPEED = .8;
 
     // The "Centric" mode for the robot
     private CentricMode centricMode = CentricMode.FIELD;

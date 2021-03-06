@@ -123,6 +123,7 @@ public class Robot extends TimedRobot {
     public void teleopInit() {
         Robot.swerveDriveSubsystem.stop();
         Robot.swerveDriveSubsystem.setModeField();
+        Robot.gyroSubsystem.reset();
         MotionProfiling.resetProfiling();
     }
 
