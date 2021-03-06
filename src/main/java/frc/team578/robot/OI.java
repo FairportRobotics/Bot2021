@@ -45,10 +45,11 @@ public class OI implements Initializable {
         ob1.four.whileHeld(new ClimberDebugWinchDownCommand());
         ob1.five.whileHeld(new ClimberWinchBrakeRetractCommand());
 
-        ob1.seven.whileHeld(new ConveyorDebugSpinForwardCommand());
-        ob1.ten.whileHeld(new ConveyorDebugSpinBackwardsCommand());
+//        ob1.seven.whileHeld(new ConveyorDebugSpinForwardCommand());
+//        ob1.ten.whileHeld(new ConveyorDebugSpinBackwardsCommand());
 
-
+//        ob1.seven.whileHeld(new ());
+        ob1.ten.whileHeld(new AgitatorSpinOutCommand());
 
         // Shooter commands
         ob1.eight.whenPressed(new ShooterSingleShotCommand()); // Press to shoot one ball

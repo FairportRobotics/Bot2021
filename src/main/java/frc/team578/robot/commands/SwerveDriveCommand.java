@@ -53,7 +53,12 @@ public class SwerveDriveCommand extends Command {
 
         double angleDeg = Robot.gyroSubsystem.getHeading();
 
-        Robot.swerveDriveSubsystem.move(es.apply(fwd) + profilingPowerX, es.apply(str) + profilingPowerY, esRot.apply(rot), angleDeg);
+        double mag = Math.sqrt(fwd*fwd + str*str);
+        double ratio = 0;
+        if(mag > .001){
+            ratio = es.apply(mag)/mag;
+        }
+        Robot.swerveDriveSubsystem.move(fwd*ratio + profilingPowerX, str*ratio + profilingPowerY, esRot.apply(rot), angleDeg);
 
         SmartDashboard.putNumber("swrv.fwd", fwd);
         SmartDashboard.putNumber("swrv.str", str);
