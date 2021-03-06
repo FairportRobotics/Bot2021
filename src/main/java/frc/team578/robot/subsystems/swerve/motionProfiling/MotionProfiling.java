@@ -96,10 +96,16 @@ public class MotionProfiling {
     private void managePos(int ind){
         // if(ind < botPath.length)
         //     pos = botPath[ind];
-        long t = (System.currentTimeMillis() - timeInit);
-        double sec = ((double)t)/1000;
-        if(sec < 20)
-            pos = new Vector2d(sec, 0);
+        double dTime = ((double)(System.currentTimeMillis() - timeInit))/1000;
+
+        double duration = 5;
+        double radius = 2;
+        if(dTime < 60){
+            pos = new Vector2d(
+                radius*Math.sin(System.currentTimeMillis()/duration*Math.PI*2),
+                -radius*Math.cos(System.currentTimeMillis()/duration*Math.PI*2) + radius
+            );
+        }
     }
     private void manageAngle(int ind){
         if(ind < botPath.length)

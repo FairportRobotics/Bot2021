@@ -6,7 +6,7 @@ import frc.team578.robot.commands.*;
 public class Points{
 	public static final double CURVES_PER_SECOND = 1.0;
 	public static final int POINTS_PER_CURVE = 10;
-	static final double[] pidValues = {1.0, 0.0, 0.15};
+	static final double[] pidValues = {1.5, 0.0, 0.12};
 
 
 	protected static class TimedCommand{
