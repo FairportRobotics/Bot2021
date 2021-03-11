@@ -17,8 +17,10 @@ public class IntakeSubsystem extends Subsystem implements Initializable {
     private WPI_TalonSRX agitatorTalon;
 
     private DoubleSolenoid intakeArmSolenoid;
-    private double spinIntakeInPower = 0.25;
-    private double spinIntakeOutPower = 0.3;
+    private double spinIntakeInPower = 0.35;
+    private double spinIntakeOutPower = 0.75;
+    private double spinAgitatorOutPower = 0.35;
+    private double spinAgitatorInPower = 0.35;
 
 
 
@@ -59,18 +61,19 @@ public class IntakeSubsystem extends Subsystem implements Initializable {
 
     //Agitator Motor
     public void agitatorSpinOut() {
-        agitatorTalon.set(ControlMode.PercentOutput, spinIntakeOutPower);
+        agitatorTalon.set(ControlMode.PercentOutput, spinAgitatorOutPower);
     }
 
 
     public void agitatorSpinIn() {
 
-        agitatorTalon.set(ControlMode.PercentOutput, -spinIntakeInPower);
+        agitatorTalon.set(ControlMode.PercentOutput, -spinAgitatorInPower);
 
     }
 
     public void stop() {intakeTalon.set(ControlMode.PercentOutput, 0);}
 
+    public void stopAgitator() {agitatorTalon.set(ControlMode.PercentOutput, 0);}
 
 
 

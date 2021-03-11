@@ -11,6 +11,7 @@ public class AgitatorSpinOutCommand extends Command {
     private static final Logger log = LogManager.getLogger(AgitatorSpinOutCommand.class);
 
     public AgitatorSpinOutCommand() {
+
         requires(Robot.intakeSubsystem);
     }
 
@@ -22,15 +23,15 @@ public class AgitatorSpinOutCommand extends Command {
     @Override
     protected void execute() {
         log.info("Exec AgitatorSpinOutCommand");
-        Robot.intakeSubsystem.agitatorSpinIn();
-//        Robot.intakeSubsystem.agitatorSpinOut();
+//        Robot.intakeSubsystem.agitatorSpinIn();
+        Robot.intakeSubsystem.agitatorSpinOut();
 
     }
 
     @Override
     protected void interrupted() {
         log.info("Interrupted AgitatorSpinOutCommand");
-        Robot.intakeSubsystem.stop();
+        Robot.intakeSubsystem.stopAgitator();
     }
 
     @Override

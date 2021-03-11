@@ -27,14 +27,18 @@ public class OI implements Initializable {
         /* Operator */
         // Big Boi
         // Hook commands
-        ob1.one.whenPressed(new HookDeployCommand()); // Press to deploy hook
-        ob2.one.whenPressed(new ClimberWinchUpCommand()); // Press to bring hook back down
+ //       ob1.one.whenPressed(new HookDeployCommand()); // Press to deploy hook
+ //       ob2.one.whenPressed(new ClimberWinchUpCommand()); // Press to bring hook back downn
+
+        ob1.one.whileHeld(new AgitatorSpinOutCommand());
+       // ob2.one.whenPressed(new AgitatorSpinInCommand());
 
         ob1.two.whenPressed(new ClimberWinchBrakeExtendCommand()); // Press to extend winch brake
         ob2.two.whenPressed(new HookDeployReverseCommand()); // Press to retract winch brake
+
         // Intake commands
-        ob2.three.whileHeld(new IntakeInCommand()); // Hold to spin intake in
-        ob2.six.whileHeld(new IntakeOutCommand()); // Hold to spin intake out
+        ob2.three.whileHeld(new IntakeOutCommand()); // Hold to spin intake out
+        ob2.six.whileHeld(new IntakeInCommand()); // Hold to spin intake in
 
         ob2.four.whenPressed(new ShooterToDefaultRPMCommand());
         ob2.five.whenPressed(new ShooterDebugStopCommand());
@@ -45,11 +49,11 @@ public class OI implements Initializable {
         ob1.four.whileHeld(new ClimberDebugWinchDownCommand());
         ob1.five.whileHeld(new ClimberWinchBrakeRetractCommand());
 
-//        ob1.seven.whileHeld(new ConveyorDebugSpinForwardCommand());
-//        ob1.ten.whileHeld(new ConveyorDebugSpinBackwardsCommand());
+        ob1.seven.whileHeld(new ConveyorDebugSpinForwardCommand());
+        ob1.ten.whileHeld(new ConveyorDebugSpinBackwardsCommand());
 
 //        ob1.seven.whileHeld(new ());
-        ob1.ten.whileHeld(new AgitatorSpinOutCommand());
+//        ob1.ten.whileHeld(new AgitatorSpinOutCommand());
 
         // Shooter commands
         ob1.eight.whenPressed(new ShooterSingleShotCommand()); // Press to shoot one ball
