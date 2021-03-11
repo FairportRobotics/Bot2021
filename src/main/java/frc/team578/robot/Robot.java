@@ -3,20 +3,14 @@ package frc.team578.robot;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.shuffleboard.EventImportance;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import frc.team578.robot.commands.auto.commandgroups.*;
-import frc.team578.robot.commands.auto.enums.AutoActionEnum;
-import frc.team578.robot.commands.auto.enums.AutoStartingPositionEnum;
 import frc.team578.robot.subsystems.*;
-import frc.team578.robot.utils.ChooserUtil;
+import frc.team578.robot.subsystems.swerve.motionProfiling.FieldPosition;
+import frc.team578.robot.subsystems.swerve.motionProfiling.MotionProfiling;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import static frc.team578.robot.commands.auto.enums.AutoActionEnum.PENFIELD_CENTER;
 
 public class Robot extends TimedRobot {
 
@@ -34,11 +28,7 @@ public class Robot extends TimedRobot {
     public static GyroSubsystem gyroSubsystem;
     public static UsbCamera camera;
     public static ConveyorSubsystem conveyorSubsystem;
-
-    private SendableChooser<AutoStartingPositionEnum> startingPositionChooser;
-    private SendableChooser<AutoActionEnum> autoActionChooser;
-    Command autonomousCommand;
-
+    public static MotionProfiling motionProfiling;
 
 
 
@@ -57,6 +47,8 @@ public class Robot extends TimedRobot {
             swerveDriveSubsystem = new SwerveDriveSubsystem();
             swerveDriveSubsystem.initialize();
             log.info("Swerve Drive Subsystem Initialized");
+
+            motionProfiling = new MotionProfiling();
 
             intakeSubsystem = new IntakeSubsystem();
             intakeSubsystem.initialize();
@@ -87,9 +79,6 @@ public class Robot extends TimedRobot {
             oi.initialize();
             log.info("OI Subsystem Initialized");
 
-            autoActionChooser = ChooserUtil.initializeAutoActionChooser();
-            log.info("Initialized Auto Action Chooser");
-
         } catch (Throwable t) {
             log.error("Error In Robot Initialization : " + t.getMessage(), t);
             throw t;
@@ -109,7 +98,8 @@ public class Robot extends TimedRobot {
     public void autonomousInit() {
 
         Robot.swerveDriveSubsystem.stop();
-        Robot.swerveDriveSubsystem.moveAllWheelsToTrueNorth();
+
+        MotionProfiling.resetProfiling();
 
         /*
           TODO : Do we want to lower the arm at the beginning (or is this manual)
@@ -118,32 +108,6 @@ public class Robot extends TimedRobot {
         DriverStation.Alliance color = DriverStation.getInstance().getAlliance();
         log.info("Alliance Color [" + color.name() + "]");
 
-        AutoActionEnum autoActionEnum = autoActionChooser.getSelected();
-
-        // TODO: Find an rpm
-        switch (autoActionEnum) {
-            case PENFIELD_LEFT:
-                autonomousCommand = new PenfieldLeftShot(6000);
-                break;
-            case PENFIELD_CENTER:
-                autonomousCommand = new PenfieldCenterShot(4350);
-                break;
-            case PENFIELD_RIGHT:
-                autonomousCommand = new PenfieldRightShot(4240);
-                break;
-            case CROSS_LINE_FORWARD:
-                autonomousCommand = new MoveForwardOffLine();
-                break;
-            default:
-                autonomousCommand = new MoveBackwardOffLine();
-                break;
-        }
-
-        log.info("Autonomous Command : " + autonomousCommand.getName());
-
-        if (autonomousCommand != null) {
-            autonomousCommand.start();
-        }
     }
 
     @Override
@@ -151,15 +115,16 @@ public class Robot extends TimedRobot {
 
         updateAllDashboards();
         Scheduler.getInstance().run();
+        FieldPosition.periodic();
+        motionProfiling.periodic();
     }
 
     @Override
     public void teleopInit() {
-        if (autonomousCommand != null) {
-            autonomousCommand.cancel();
-        }
         Robot.swerveDriveSubsystem.stop();
         Robot.swerveDriveSubsystem.setModeField();
+        Robot.gyroSubsystem.reset();
+        MotionProfiling.resetProfiling();
     }
 
     @Override
@@ -183,6 +148,7 @@ public class Robot extends TimedRobot {
         Robot.shooterSubsystem.stop();
         Robot.swerveDriveSubsystem.stop();
         Robot.conveyorSubsystem.stop();
+        Robot.intakeSubsystem.stop();
     }
 
     @Override

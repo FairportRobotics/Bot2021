@@ -69,7 +69,7 @@ public class ConveyorSubsystem extends Subsystem implements Initializable, Updat
     public void periodic() {
 
         // Comment this out to ENABLE logic
-//        shootMode = ShootMode.NULL;
+        shootMode = ShootMode.NULL;
 
         if (prevShootMode == null || shootMode != prevShootMode) {
             log.info("Shoot Mode : " + shootMode);
