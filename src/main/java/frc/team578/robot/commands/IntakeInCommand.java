@@ -27,11 +27,14 @@ public class IntakeInCommand extends Command {
     protected void execute() {
 //        SmartDashboard.putBoolean("Intake",Robot.conveyorSubsystem.isIntakeSensorTripped());
         log.debug("Exec IntakeInCommand");
-        if(Robot.conveyorSubsystem.isIntakeSensorTripped()) {
+/*        if(Robot.conveyorSubsystem.isIntakeSensorTripped()) {
             Robot.intakeSubsystem.stop();
         } else {
             Robot.intakeSubsystem.intakeSpinIn();
-        }
+        }*/
+
+        Robot.intakeSubsystem.intakeSpinIn();
+
     }
 
 
