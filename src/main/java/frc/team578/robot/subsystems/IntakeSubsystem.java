@@ -17,8 +17,8 @@ public class IntakeSubsystem extends Subsystem implements Initializable {
     private WPI_TalonSRX agitatorTalon;
 
     private DoubleSolenoid intakeArmSolenoid;
-    private double spinIntakeInPower = 0.35;
-    private double spinIntakeOutPower = 0.75;
+    private double spinIntakeInPower = 0.75;
+    private double spinIntakeOutPower = 0.35;
     private double spinAgitatorOutPower = 0.35;
     private double spinAgitatorInPower = 0.35;
 
@@ -47,17 +47,9 @@ public class IntakeSubsystem extends Subsystem implements Initializable {
     public void intakeArmDown() { intakeArmSolenoid.set(DoubleSolenoid.Value.kReverse);}
 
     //Intake Motor
-    public void intakeSpinIn() {
-//        if(Robot.conveyorSubsystem.isIntakeSensorTripped()) { // If intake sensor is tripped, stop the intake
-//            stop();
-//        } else {
-            intakeTalon.set(ControlMode.PercentOutput, -spinIntakeInPower);
-//        }
-    }
+    public void intakeSpinIn() { intakeTalon.set(ControlMode.PercentOutput, spinIntakeInPower);   }
 
-    public void intakeSpinOut() {
-        intakeTalon.set(ControlMode.PercentOutput, spinIntakeOutPower);
-    }
+    public void intakeSpinOut() { intakeTalon.set(ControlMode.PercentOutput, -spinIntakeOutPower); }
 
     //Agitator Motor
     public void agitatorSpinOut() {
@@ -65,11 +57,7 @@ public class IntakeSubsystem extends Subsystem implements Initializable {
     }
 
 
-    public void agitatorSpinIn() {
-
-        agitatorTalon.set(ControlMode.PercentOutput, -spinAgitatorInPower);
-
-    }
+    public void agitatorSpinIn() { agitatorTalon.set(ControlMode.PercentOutput, -spinAgitatorInPower); }
 
     public void stop() {intakeTalon.set(ControlMode.PercentOutput, 0);}
 

@@ -10,6 +10,7 @@ public class IntakeArmDownCommand extends Command {
 
     public IntakeArmDownCommand() {
         log.debug("IntakeArmDownCommand Constructor");
+        System.out.println("Intake Arm down");
     }
 
     @Override

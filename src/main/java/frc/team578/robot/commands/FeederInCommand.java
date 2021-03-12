@@ -6,30 +6,34 @@ import frc.team578.robot.Robot;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class IntakeInCommand2 extends Command {
+public class FeederInCommand extends Command {
 
-    private static final Logger log = LogManager.getLogger(IntakeInCommand2.class);
+    private static final Logger log = LogManager.getLogger(FeederInCommand.class);
     boolean isFinished;
 
-    public IntakeInCommand2() {
+    public FeederInCommand() {
 //        requires(Robot.intakeSubsystem);
+//        requires(Robot.conveyorSubsystem);
     }
 
     @Override
     protected void initialize() {
-        log.debug("Initializing IntakeInCommand2");
+        log.debug("Initializing FeederInCommand");
     }
 
     @Override
     protected void execute() {
+        log.debug("Exec FeederInCommand");
+
         Robot.intakeSubsystem.intakeSpinIn();
+
     }
 
 
     @Override
     protected void interrupted() {
-        Robot.intakeSubsystem.stop();
-        log.debug("Interrupted IntakeInCommand2");
+        Robot.feederSubsystem.stop();
+        log.debug("Interrupted IntakeInCommand");
     }
 
     @Override
@@ -39,6 +43,6 @@ public class IntakeInCommand2 extends Command {
 
     @Override
     protected void end() {
-        log.debug("Ending IntakeInCommand2 " + timeSinceInitialized());
+        log.debug("Ending IntakeInCommand " + timeSinceInitialized());
     }
 }

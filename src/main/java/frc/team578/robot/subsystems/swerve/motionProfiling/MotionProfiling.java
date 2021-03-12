@@ -89,7 +89,7 @@ public class MotionProfiling {
         double angSpeed = (heading-prevHeading)/(time-prevTime)*angDeriv;
         anglePower -= angSpeed;
         
-        setBotPower(new Vector2d(power.x - dl*Math.cos(a), power.y - dl*Math.sin(a)), 0*anglePower);
+        setBotPower(new Vector2d(power.x - dl*Math.cos(a), power.y - dl*Math.sin(a)), anglePower);
         prevTime = time;
         prevHeading = heading;
     }
@@ -123,8 +123,8 @@ public class MotionProfiling {
     }
     private void setBotPower(Vector2d vec, double angle){
 
-        if(vec.magnitude() > .8)
-            vec = new Vector2d(vec.x/vec.magnitude()/2, vec.y/vec.magnitude()/2);  // normalizing
+        if(vec.magnitude() > 1)
+            vec = new Vector2d(vec.x/vec.magnitude(), vec.y/vec.magnitude());  // normalizing
         Robot.swerveDriveSubsystem.swerveDriveCommand.setProfilingPowerX(vec.x);
         Robot.swerveDriveSubsystem.swerveDriveCommand.setProfilingPowerY(vec.y);
         Robot.swerveDriveSubsystem.swerveDriveCommand.setProfilingPowerA(angle);

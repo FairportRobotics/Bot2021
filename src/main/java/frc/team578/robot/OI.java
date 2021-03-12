@@ -30,34 +30,33 @@ public class OI implements Initializable {
  //       ob1.one.whenPressed(new HookDeployCommand()); // Press to deploy hook
  //       ob2.one.whenPressed(new ClimberWinchUpCommand()); // Press to bring hook back downn
 
-        ob1.one.whileHeld(new AgitatorSpinOutCommand());
+        ob1.nine.whileHeld(new AgitatorSpinOutCommand());
        // ob2.one.whenPressed(new AgitatorSpinInCommand());
 
-        ob1.two.whenPressed(new ClimberWinchBrakeExtendCommand()); // Press to extend winch brake
-        ob2.two.whenPressed(new HookDeployReverseCommand()); // Press to retract winch brake
+//        ob1.two.whenPressed(new ClimberWinchBrakeExtendCommand()); // Press to extend winch brake
+//        ob2.two.whenPressed(new HookDeployReverseCommand()); // Press to retract winch brake
 
         // Intake commands
-        ob2.three.whileHeld(new IntakeOutCommand()); // Hold to spin intake out
+        ob1.ten.whileHeld(new IntakeOutCommand()); // Hold to spin intake out
         ob2.six.whileHeld(new IntakeInCommand()); // Hold to spin intake in
 
-        ob2.four.whenPressed(new ShooterToDefaultRPMCommand());
-        ob2.five.whenPressed(new ShooterDebugStopCommand());
+        ob1.four.whenPressed(new ShooterToDefaultRPMCommand());
+        ob1.five.whenPressed(new ShooterDebugStopCommand());
 
-        ob1.three.whenPressed(new IntakeArmDownCommand());
-        ob1.six.whenPressed(new IntakeArmUpCommand());
+        ob2.three.whenPressed(new IntakeArmDownCommand());
+        ob1.seven.whenPressed(new IntakeArmUpCommand());
 
-        ob1.four.whileHeld(new ClimberDebugWinchDownCommand());
-        ob1.five.whileHeld(new ClimberWinchBrakeRetractCommand());
+//        ob1.four.whileHeld(new ClimberDebugWinchDownCommand());
+//        ob1.five.whileHeld(new ClimberWinchBrakeRetractCommand());
 
-        ob1.seven.whileHeld(new ConveyorDebugSpinForwardCommand());
-        ob1.ten.whileHeld(new ConveyorDebugSpinBackwardsCommand());
+        ob1.eight.whileHeld(new ConveyorDebugSpinForwardCommand());
+        ob2.four.whileHeld(new ConveyorDebugSpinBackwardsCommand());
 
-//        ob1.seven.whileHeld(new ());
-//        ob1.ten.whileHeld(new AgitatorSpinOutCommand());
 
         // Shooter commands
-        ob1.eight.whenPressed(new ShooterSingleShotCommand()); // Press to shoot one ball
-        ob1.nine.whenPressed(new ToggleConveyorModeCommand()); // Hold to continuously shoot
+//        ob1.eight.whenPressed(new ShooterSingleShotCommand()); // Press to shoot one ball
+//        ob1.nine.whenPressed(new ToggleConveyorModeCommand()); // Hold to continuously shoot
+
         // Winch brake commands
 
         // Winch commands

@@ -27,7 +27,7 @@ public class Robot extends TimedRobot {
     public static SpinnerSubsystem spinnerSubsystem;
     public static GyroSubsystem gyroSubsystem;
     public static UsbCamera camera;
-    public static ConveyorSubsystem conveyorSubsystem;
+    public static FeederSubsystem feederSubsystem;
     public static MotionProfiling motionProfiling;
 
 
@@ -54,9 +54,9 @@ public class Robot extends TimedRobot {
             intakeSubsystem.initialize();
             log.info("Intake Subsystem Initialized");
 
-            conveyorSubsystem = new ConveyorSubsystem();
-            conveyorSubsystem.initialize();
-            log.info("Conveyor Subsystem Initialized");
+            feederSubsystem = new FeederSubsystem();
+            feederSubsystem.initialize();
+            log.info("Feeder Subsystem Initialized");
 
             shooterSubsystem = new ShooterSubsystem();
             shooterSubsystem.initialize();
@@ -147,7 +147,7 @@ public class Robot extends TimedRobot {
         super.disabledInit();
         Robot.shooterSubsystem.stop();
         Robot.swerveDriveSubsystem.stop();
-        Robot.conveyorSubsystem.stop();
+        Robot.feederSubsystem.stop();
         Robot.intakeSubsystem.stop();
     }
 
