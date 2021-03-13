@@ -30,8 +30,8 @@ public class OI implements Initializable {
  //       ob1.one.whenPressed(new HookDeployCommand()); // Press to deploy hook
  //       ob2.one.whenPressed(new ClimberWinchUpCommand()); // Press to bring hook back downn
 
-        ob1.nine.whenHeld(new AgitatorSpinOutCommand());
-        ob2.five.whenHeld(new AgitatorSpinInCommand());
+        ob1.nine.whileHeld(new AgitatorSpinOutCommand());
+        ob2.five.whileHeld(new AgitatorSpinInCommand());
 
 //        ob1.two.whenPressed(new ClimberWinchBrakeExtendCommand()); // Press to extend winch brake
 //        ob2.two.whenPressed(new HookDeployReverseCommand()); // Press to retract winch brake
