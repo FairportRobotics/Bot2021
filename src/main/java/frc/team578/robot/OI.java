@@ -12,9 +12,9 @@ public class OI implements Initializable {
 
     public Joystick leftJoystick = new Joystick(RobotMap.LEFT_JOYSTICK_ID);
     public Joystick rightJoystick = new Joystick(RobotMap.RIGHT_JOYSTICK_ID);
-    public OperatorBox ob1 = new OperatorBox(RobotMap.OPERATORBOX1_ID); // Operator box - main control functions w/ analog joystick
-    public OperatorBox ob2 = new OperatorBox(RobotMap.OPERATORBOX2_ID); // Operator box - main control functions w/ analog joystick
-
+    public OperatorBox ob = new OperatorBox(); // Operator box - main control functions w/ analog joystick
+    //top left is 1,1
+    
     int JOYSTICK_TRIGGER_BUTTON_NUMBER = 1;
     JoystickButton leftTrigger = new JoystickButton(leftJoystick, JOYSTICK_TRIGGER_BUTTON_NUMBER);
     JoystickButton rightTrigger = new JoystickButton(rightJoystick, JOYSTICK_TRIGGER_BUTTON_NUMBER);
@@ -30,27 +30,27 @@ public class OI implements Initializable {
  //       ob1.one.whenPressed(new HookDeployCommand()); // Press to deploy hook
  //       ob2.one.whenPressed(new ClimberWinchUpCommand()); // Press to bring hook back downn
 
-        ob1.nine.whenHeld(new AgitatorSpinOutCommand());
-        ob2.five.whenHeld(new AgitatorSpinInCommand());
+        ob.getButton(3,3).whileHeld(new AgitatorSpinOutCommand());
+        ob.getButton(3,4).whileHeld(new AgitatorSpinInCommand());
 
 //        ob1.two.whenPressed(new ClimberWinchBrakeExtendCommand()); // Press to extend winch brake
 //        ob2.two.whenPressed(new HookDeployReverseCommand()); // Press to retract winch brake
 
         // Intake commands
-        ob1.ten.whileHeld(new IntakeOutCommand()); // Hold to spin intake out
-        ob2.six.whileHeld(new IntakeInCommand()); // Hold to spin intake in
+        ob.getButton(4,3).whileHeld(new IntakeOutCommand()); // Hold to spin intake out
+        ob.getButton(4,4).whileHeld(new IntakeInCommand()); // Hold to spin intake in
 
-        ob1.four.whenPressed(new ShooterToDefaultRPMCommand());
-        ob1.five.whenPressed(new ShooterDebugStopCommand());
+        ob.getButton(2,2).whenPressed(new ShooterToDefaultRPMCommand());
+        ob.getButton(3,2).whenPressed(new ShooterDebugStopCommand());
 
-        ob2.three.whenPressed(new IntakeArmDownCommand());
-        ob1.seven.whenPressed(new IntakeArmUpCommand());
+        ob.getButton(1,4).whenPressed(new IntakeArmDownCommand());
+        ob.getButton(1,3).whenPressed(new IntakeArmUpCommand());
 
 //        ob1.four.whileHeld(new ClimberDebugWinchDownCommand());
 //        ob1.five.whileHeld(new ClimberWinchBrakeRetractCommand());
 
-        ob1.eight.whileHeld(new FeederInCommand());
-        ob2.four.whileHeld(new FeederOutCommand());
+        ob.getButton(2,3).whileHeld(new FeederInCommand());
+        ob.getButton(2,4).whileHeld(new FeederOutCommand());
 
 
         // Shooter commands
@@ -63,10 +63,10 @@ public class OI implements Initializable {
 
 
         // Analog joystick stuff
-        final AnalogJoystickButton LEFT = new AnalogJoystickButton(ob1.getAnalogJoystick(), 0, -1),
-                RIGHT = new AnalogJoystickButton(ob1.getAnalogJoystick(), 0, 1),
-                UP = new AnalogJoystickButton(ob1.getAnalogJoystick(), 1, -1),
-                DOWN = new AnalogJoystickButton(ob1.getAnalogJoystick(), 1, 1);
+        final AnalogJoystickButton LEFT = new AnalogJoystickButton(ob.getAnalogJoystick(), 0, -1),
+                RIGHT = new AnalogJoystickButton(ob.getAnalogJoystick(), 0, 1),
+                UP = new AnalogJoystickButton(ob.getAnalogJoystick(), 1, -1),
+                DOWN = new AnalogJoystickButton(ob.getAnalogJoystick(), 1, 1);
 
         LEFT.whileHeld(new ClimberTraverseLeft());
         RIGHT.whileHeld(new ClimberTraverseRight());
