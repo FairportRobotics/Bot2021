@@ -5,31 +5,30 @@ import frc.team578.robot.Robot;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class AgitatorSpinOutCommand extends Command {
+public class AgitatorSpinInCommand extends Command {
 
-    private static final Logger log = LogManager.getLogger(AgitatorSpinOutCommand.class);
+    private static final Logger log = LogManager.getLogger(AgitatorSpinInCommand.class);
 
-    public AgitatorSpinOutCommand() {
+    public AgitatorSpinInCommand() {
 
         requires(Robot.intakeSubsystem);
     }
 
     @Override
     protected void initialize() {
-        log.info("Initializing AgitatorSpinOutCommand");
+        log.info("Initializing AgitatorSpinInCommand");
     }
 
     @Override
     protected void execute() {
-        log.info("Exec AgitatorSpinOutCommand");
-//        Robot.intakeSubsystem.agitatorSpinIn();
-        Robot.intakeSubsystem.agitatorSpinOut();
+        log.info("Exec AgitatorSpinInCommand");
+        Robot.intakeSubsystem.agitatorSpinIn();
 
     }
 
     @Override
     protected void interrupted() {
-        log.info("Interrupted AgitatorSpinOutCommand");
+        log.info("Interrupted AgitatorSpinInCommand");
         Robot.intakeSubsystem.stopAgitator();
     }
 
@@ -39,7 +38,7 @@ public class AgitatorSpinOutCommand extends Command {
     protected boolean isFinished() { return false; }
 
     protected void end() {
-        log.info("Ending AgitatorSpinOutCommand " + timeSinceInitialized());
+        log.info("Ending AgitatorSpinInCommand " + timeSinceInitialized());
     }
 
 }

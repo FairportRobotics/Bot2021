@@ -40,6 +40,7 @@ public class IntakeSubsystem extends Subsystem implements Initializable {
         agitatorTalon.setNeutralMode(NeutralMode.Brake);
 
         intakeArmSolenoid = new DoubleSolenoid(RobotMap.PCM1, RobotMap.PCM1_INTAKE_UP, RobotMap.PCM1_INTAKE_DOWN);
+
     }
 
     //Piston  -  These kForward and kReverse Values may need to be switched

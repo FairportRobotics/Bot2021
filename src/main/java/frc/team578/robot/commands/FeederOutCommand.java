@@ -6,26 +6,26 @@ import frc.team578.robot.Robot;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class FeederInCommand extends Command {
+public class FeederOutCommand extends Command {
 
-    private static final Logger log = LogManager.getLogger(FeederInCommand.class);
+    private static final Logger log = LogManager.getLogger(FeederOutCommand.class);
     boolean isFinished;
 
-    public FeederInCommand() {
+    public FeederOutCommand() {
 //        requires(Robot.intakeSubsystem);
 //        requires(Robot.conveyorSubsystem);
     }
 
     @Override
     protected void initialize() {
-        log.debug("Initializing FeederInCommand");
+        log.debug("Initializing FeederOut Command");
     }
 
     @Override
     protected void execute() {
-        log.debug("Exec FeederInCommand");
+        log.debug("Exec FeederOut Command");
 
-        Robot.feederSubsystem.feederSpinIn();
+        Robot.feederSubsystem.feederSpinOut();
 
     }
 

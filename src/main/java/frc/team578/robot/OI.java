@@ -30,8 +30,8 @@ public class OI implements Initializable {
  //       ob1.one.whenPressed(new HookDeployCommand()); // Press to deploy hook
  //       ob2.one.whenPressed(new ClimberWinchUpCommand()); // Press to bring hook back downn
 
-        ob1.nine.whileHeld(new AgitatorSpinOutCommand());
-       // ob2.one.whenPressed(new AgitatorSpinInCommand());
+        ob1.nine.whenPressed(new AgitatorSpinOutCommand());
+        ob2.five.whenPressed(new AgitatorSpinInCommand());
 
 //        ob1.two.whenPressed(new ClimberWinchBrakeExtendCommand()); // Press to extend winch brake
 //        ob2.two.whenPressed(new HookDeployReverseCommand()); // Press to retract winch brake
@@ -49,8 +49,8 @@ public class OI implements Initializable {
 //        ob1.four.whileHeld(new ClimberDebugWinchDownCommand());
 //        ob1.five.whileHeld(new ClimberWinchBrakeRetractCommand());
 
-        ob1.eight.whileHeld(new ConveyorDebugSpinForwardCommand());
-        ob2.four.whileHeld(new ConveyorDebugSpinBackwardsCommand());
+        ob1.eight.whileHeld(new FeederInCommand());
+        ob2.four.whileHeld(new FeederOutCommand());
 
 
         // Shooter commands

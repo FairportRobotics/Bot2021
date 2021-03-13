@@ -125,6 +125,7 @@ public class Robot extends TimedRobot {
         Robot.swerveDriveSubsystem.setModeField();
         Robot.gyroSubsystem.reset();
         MotionProfiling.resetProfiling();
+
     }
 
     @Override
