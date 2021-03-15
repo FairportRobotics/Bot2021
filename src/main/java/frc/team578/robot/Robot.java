@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.shuffleboard.EventImportance;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import frc.team578.robot.subsystems.*;
 import frc.team578.robot.subsystems.swerve.motionProfiling.FieldPosition;
-import frc.team578.robot.subsystems.swerve.motionProfiling.MotionProfiling;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -28,7 +27,7 @@ public class Robot extends TimedRobot {
     public static GyroSubsystem gyroSubsystem;
     public static UsbCamera camera;
     public static FeederSubsystem feederSubsystem;
-    public static MotionProfiling motionProfiling;
+    public static Steer steer;
 
 
 
