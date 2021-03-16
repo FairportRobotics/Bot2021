@@ -57,6 +57,11 @@ public class OI implements Initializable {
 //        ob1.eight.whenPressed(new ShooterSingleShotCommand()); // Press to shoot one ball
 //        ob1.nine.whenPressed(new ToggleConveyorModeCommand()); // Hold to continuously shoot
 
+        ob.getButton(1,1).whenPressed(new ShooterToLowRPMCommand());
+        ob.getButton(2,1).whenPressed(new ShooterToDefaultRPMCommand());
+        ob.getButton(3,1).whenPressed(new ShooterToMediumRPMCommand());
+        ob.getButton(4,1).whenPressed(new ShooterToHighRPMCommand());
+
         // Winch brake commands
 
         // Winch commands
