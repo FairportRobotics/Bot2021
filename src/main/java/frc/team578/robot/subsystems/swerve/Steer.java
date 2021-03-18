@@ -11,7 +11,7 @@ public class Steer{
     MoveStrength moveStrength;
 
     ControlMode controlMode;
-    private final double CONTROLLER_DISTANCE = 3; // max conponent distance controller can set point.
+    private final double CONTROLLER_DISTANCE = 3; // max component distance controller can set point.
     private Vector2d[] botPath;
     private double[] botRot;
     private long timeInit;

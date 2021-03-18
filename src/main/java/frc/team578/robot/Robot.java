@@ -47,7 +47,7 @@ public class Robot extends TimedRobot {
             swerveDriveSubsystem.initialize();
             log.info("Swerve Drive Subsystem Initialized");
 
-            motionProfiling = new MotionProfiling();
+            steer = new Steer(); // initializes/resets movestrength and fieldposition
 
             intakeSubsystem = new IntakeSubsystem();
             intakeSubsystem.initialize();
@@ -98,11 +98,7 @@ public class Robot extends TimedRobot {
 
         Robot.swerveDriveSubsystem.stop();
 
-        MotionProfiling.resetProfiling();
-
-        /*
-          TODO : Do we want to lower the arm at the beginning (or is this manual)
-         */
+        steer.restart();
 
         DriverStation.Alliance color = DriverStation.getInstance().getAlliance();
         log.info("Alliance Color [" + color.name() + "]");
@@ -115,7 +111,7 @@ public class Robot extends TimedRobot {
         updateAllDashboards();
         Scheduler.getInstance().run();
         FieldPosition.periodic();
-        motionProfiling.periodic();
+        steer.periodic();
     }
 
     @Override
@@ -123,13 +119,13 @@ public class Robot extends TimedRobot {
         Robot.swerveDriveSubsystem.stop();
         Robot.swerveDriveSubsystem.setModeField();
         Robot.gyroSubsystem.reset();
-        MotionProfiling.resetProfiling();
-
+        steer.restart();
     }
 
     @Override
     public void teleopPeriodic() {
         updateAllDashboards();
+        steer.periodic();
         Scheduler.getInstance().run();
     }
 

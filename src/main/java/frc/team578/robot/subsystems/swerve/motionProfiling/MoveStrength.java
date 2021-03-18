@@ -25,6 +25,7 @@ public class MoveStrength {
 
 
     public void move(Vector2d pos, double rot){
+        
         long time = System.currentTimeMillis();
 
         double px = FieldPosition.getBotXPosition() - pos.x;
