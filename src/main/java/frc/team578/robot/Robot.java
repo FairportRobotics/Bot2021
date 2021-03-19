@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.shuffleboard.EventImportance;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import frc.team578.robot.subsystems.*;
+import frc.team578.robot.subsystems.swerve.Steer;
 import frc.team578.robot.subsystems.swerve.motionProfiling.FieldPosition;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -28,8 +29,6 @@ public class Robot extends TimedRobot {
     public static UsbCamera camera;
     public static FeederSubsystem feederSubsystem;
     public static Steer steer;
-
-
 
     @Override
     public void robotInit() {
@@ -65,14 +64,14 @@ public class Robot extends TimedRobot {
             climberSubsystem.initialize();
             log.info("Climber Subsystem Initialized");
 
-//            spinnerSubsystem = new SpinnerSubsystem();
-//            spinnerSubsystem.initialize();
-//            log.info("Spinner Subsystem Initialized");
+            // spinnerSubsystem = new SpinnerSubsystem();
+            // spinnerSubsystem.initialize();
+            // log.info("Spinner Subsystem Initialized");
 
-//            camera = CameraServer.getInstance().startAutomaticCapture();
-//            // cam.setResolution(100, 75);
-//            // cam.setFPS(-1);
-//            log.info("Initialized Camera");
+            // camera = CameraServer.getInstance().startAutomaticCapture();
+            // // cam.setResolution(100, 75);
+            // // cam.setFPS(-1);
+            // log.info("Initialized Camera");
 
             oi = new OI();
             oi.initialize();
@@ -91,7 +90,6 @@ public class Robot extends TimedRobot {
 
         Scheduler.getInstance().run();
     }
-
 
     @Override
     public void autonomousInit() {
@@ -153,38 +151,35 @@ public class Robot extends TimedRobot {
         Scheduler.getInstance().run();
     }
 
-
     public void updateAllDashboards() {
-//        Robot.swerveDriveSubsystem.updateDashboard();
-//        Robot.gyroSubsystem.updateDashboard();
-//        Robot.conveyorSubsystem.updateDashboard();
+        // Robot.swerveDriveSubsystem.updateDashboard();
+        // Robot.gyroSubsystem.updateDashboard();
+        // Robot.conveyorSubsystem.updateDashboard();
         Robot.shooterSubsystem.updateDashboard();
     }
 
     public void handleGameData() {
         String gameData = DriverStation.getInstance().getGameSpecificMessage();
-        if(gameData.length() > 0)
-        {
-            switch (gameData.charAt(0))
-            {
-                case 'B' :
-                    //Blue case code
-                    break;
-                case 'G' :
-                    //Green case code
-                    break;
-                case 'R' :
-                    //Red case code
-                    break;
-                case 'Y' :
-                    //Yellow case code
-                    break;
-                default :
-                    //This is corrupt data
-                    break;
+        if (gameData.length() > 0) {
+            switch (gameData.charAt(0)) {
+            case 'B':
+                // Blue case code
+                break;
+            case 'G':
+                // Green case code
+                break;
+            case 'R':
+                // Red case code
+                break;
+            case 'Y':
+                // Yellow case code
+                break;
+            default:
+                // This is corrupt data
+                break;
             }
         } else {
-            //Code for no data received yet
+            // Code for no data received yet
         }
     }
 }
