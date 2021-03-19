@@ -42,10 +42,8 @@ public class RobotMap {
     public static final int PCM1_CLIMBER_BRAKE_EXTEND = 0;
     public static final int PCM1_CLIMBER_BRAKE_RETRACT = 1;
 
-    // Conveyor
+    // Feeder
     public static final int CONVEYOR_FEEDER_TALON = 4;
-    public static final int CONVEYOR_INTAKE_SENSOR = 0;
-    public static final int CONVEYOR_SHOOTER_SENSOR = 1;
 
     // Spinner
     public static final int SPINNER_TALON = 999;
