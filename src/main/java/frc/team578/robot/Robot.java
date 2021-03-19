@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.shuffleboard.EventImportance;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import frc.team578.robot.subsystems.*;
+import frc.team578.robot.subsystems.swerve.ControlMode;
 import frc.team578.robot.subsystems.swerve.Steer;
 import frc.team578.robot.subsystems.swerve.motionProfiling.FieldPosition;
 import org.apache.logging.log4j.LogManager;
@@ -97,7 +98,7 @@ public class Robot extends TimedRobot {
         Robot.swerveDriveSubsystem.stop();
 
         steer.restart();
-
+        steer.setControlMode(ControlMode.AUTO);
         DriverStation.Alliance color = DriverStation.getInstance().getAlliance();
         log.info("Alliance Color [" + color.name() + "]");
 
@@ -118,6 +119,7 @@ public class Robot extends TimedRobot {
         Robot.swerveDriveSubsystem.setModeField();
         Robot.gyroSubsystem.reset();
         steer.restart();
+        steer.setControlMode(ControlMode.USER);
     }
 
     @Override

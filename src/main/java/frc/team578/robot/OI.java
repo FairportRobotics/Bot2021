@@ -22,7 +22,7 @@ public class OI implements Initializable {
     public void initialize() {
         // /* Driver */
         // leftTrigger.whenPressed(new CentricModeRobotCommand());
-        // rightTrigger.whenPressed(new CentricModeFieldCommand());
+        // rightTrigger.whenPressed(new CentricModeFieldCommand
 
         /* Operator */
         // Big Boi
