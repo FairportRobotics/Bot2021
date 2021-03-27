@@ -9,7 +9,8 @@ import java.util.ArrayList;
 
 public class MotionProfiling {
 
-    private double angDeriv = 10;
+    private double angDeriv = 0;
+    private double angP = 1;
 
     private double[] pathIn = Points.getTotalPoints();
     private Vector2d pos;
@@ -86,10 +87,11 @@ public class MotionProfiling {
             anglePower += 2*Math.PI*(anglePower<0? 1: -1);
         if(Math.abs(anglePower) > 1)
             anglePower = (anglePower<0? -1: 1);
+        angPower*=angP;
         double angSpeed = (heading-prevHeading)/(time-prevTime)*angDeriv;
         anglePower -= angSpeed;
         
-        setBotPower(new Vector2d(power.x - dl*Math.cos(a), power.y - dl*Math.sin(a)), anglePower);
+        setBotPower(new Vector2d(power.x - dl*Math.cos(a), power.y - dl*Math.sin(a)), -anglePower);
         prevTime = time;
         prevHeading = heading;
     }
@@ -152,6 +154,7 @@ public class MotionProfiling {
     public static void resetProfiling(){
         Robot.swerveDriveSubsystem.swerveDriveCommand.setProfilingPowerX(0);
         Robot.swerveDriveSubsystem.swerveDriveCommand.setProfilingPowerY(0);
+        Robot.swerveDriveSubsystem.swerveDriveCommand.setProfilingPowerA(0);
         Robot.motionProfiling.restart();
         FieldPosition.resetBotPosition();
         FieldPosition.resetBotSpeed();

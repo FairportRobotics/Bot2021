@@ -25,7 +25,7 @@ public class OperatorBox {
         buttons[0][1] = new JoystickButton(operatorBox1,3);
         buttons[1][1] = new JoystickButton(operatorBox1,4);
         buttons[2][1] = new JoystickButton(operatorBox1,5);
-        buttons[2][1] = new JoystickButton(operatorBox1,6);
+        buttons[3][1] = new JoystickButton(operatorBox1,6);
         buttons[0][2] = new JoystickButton(operatorBox1,7);
         buttons[1][2] = new JoystickButton(operatorBox1,8);
         buttons[2][2] = new JoystickButton(operatorBox1,9);

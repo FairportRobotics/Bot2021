@@ -54,7 +54,7 @@ public class SwerveDriveCommand extends Command {
         if(mag > .001){
             ratio = deadband(mag)/mag;
         }
-        Robot.swerveDriveSubsystem.move(fwd*ratio + profilingPowerX, str*ratio + profilingPowerY, deadband(rot), angleDeg);
+        Robot.swerveDriveSubsystem.move(fwd*ratio + profilingPowerX, str*ratio + profilingPowerY, deadband(rot) + profilingPowerA, angleDeg);
 
         SmartDashboard.putNumber("swrv.fwd", fwd);
         SmartDashboard.putNumber("swrv.str", str);
