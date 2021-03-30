@@ -18,12 +18,15 @@ import java.util.function.Supplier;
 public class ShooterSubsystem extends Subsystem implements Initializable, UpdateDashboard {
 
     private WPI_TalonSRX shooterTalon;
-    private double lowRPM = 3000; // 4200;
+    private double lowRPM = 6700; // 4200;
     private double defaultRPM = 4000; // 4200;
-    private double mediumRPM = 5000; // 4200;
-    private double highRPM = 6000; // 4200;
+    private double mediumRPM = 4200; // 4200;
+    private double highRPM = 4740; // 4200;
 
-
+    //Green     ->  6700 rpm
+    //Yellow    ->  3000 rpm
+    //Blue      ->  4200 rpm
+    //Red       ->  4740 rpm
 
     private double maxRPM = 6700;
     private int kTimeoutMs = 0;

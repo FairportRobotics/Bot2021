@@ -87,7 +87,7 @@ public class MotionProfiling {
             anglePower += 2*Math.PI*(anglePower<0? 1: -1);
         if(Math.abs(anglePower) > 1)
             anglePower = (anglePower<0? -1: 1);
-        angPower*=angP;
+        anglePower*=angP;
         double angSpeed = (heading-prevHeading)/(time-prevTime)*angDeriv;
         anglePower -= angSpeed;
         
