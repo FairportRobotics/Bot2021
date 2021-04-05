@@ -30,8 +30,6 @@ public class Robot extends TimedRobot {
     public static FeederSubsystem feederSubsystem;
     public static MotionProfiling motionProfiling;
 
-
-
     @Override
     public void robotInit() {
 
@@ -66,14 +64,14 @@ public class Robot extends TimedRobot {
             climberSubsystem.initialize();
             log.info("Climber Subsystem Initialized");
 
-//            spinnerSubsystem = new SpinnerSubsystem();
-//            spinnerSubsystem.initialize();
-//            log.info("Spinner Subsystem Initialized");
+            // spinnerSubsystem = new SpinnerSubsystem();
+            // spinnerSubsystem.initialize();
+            // log.info("Spinner Subsystem Initialized");
 
-//            camera = CameraServer.getInstance().startAutomaticCapture();
-//            // cam.setResolution(100, 75);
-//            // cam.setFPS(-1);
-//            log.info("Initialized Camera");
+            // camera = CameraServer.getInstance().startAutomaticCapture();
+            // // cam.setResolution(100, 75);
+            // // cam.setFPS(-1);
+            // log.info("Initialized Camera");
 
             oi = new OI();
             oi.initialize();
@@ -93,7 +91,6 @@ public class Robot extends TimedRobot {
         Scheduler.getInstance().run();
     }
 
-
     @Override
     public void autonomousInit() {
 
@@ -102,7 +99,7 @@ public class Robot extends TimedRobot {
         MotionProfiling.resetProfiling();
 
         /*
-          TODO : Do we want to lower the arm at the beginning (or is this manual)
+         * TODO : Do we want to lower the arm at the beginning (or is this manual)
          */
 
         DriverStation.Alliance color = DriverStation.getInstance().getAlliance();
@@ -158,38 +155,35 @@ public class Robot extends TimedRobot {
         Scheduler.getInstance().run();
     }
 
-
     public void updateAllDashboards() {
-//        Robot.swerveDriveSubsystem.updateDashboard();
-//        Robot.gyroSubsystem.updateDashboard();
-//        Robot.conveyorSubsystem.updateDashboard();
+        // Robot.swerveDriveSubsystem.updateDashboard();
+        // Robot.gyroSubsystem.updateDashboard();
+        // Robot.conveyorSubsystem.updateDashboard();
         Robot.shooterSubsystem.updateDashboard();
     }
 
     public void handleGameData() {
         String gameData = DriverStation.getInstance().getGameSpecificMessage();
-        if(gameData.length() > 0)
-        {
-            switch (gameData.charAt(0))
-            {
-                case 'B' :
-                    //Blue case code
-                    break;
-                case 'G' :
-                    //Green case code
-                    break;
-                case 'R' :
-                    //Red case code
-                    break;
-                case 'Y' :
-                    //Yellow case code
-                    break;
-                default :
-                    //This is corrupt data
-                    break;
+        if (gameData.length() > 0) {
+            switch (gameData.charAt(0)) {
+            case 'B':
+                // Blue case code
+                break;
+            case 'G':
+                // Green case code
+                break;
+            case 'R':
+                // Red case code
+                break;
+            case 'Y':
+                // Yellow case code
+                break;
+            default:
+                // This is corrupt data
+                break;
             }
         } else {
-            //Code for no data received yet
+            // Code for no data received yet
         }
     }
 }

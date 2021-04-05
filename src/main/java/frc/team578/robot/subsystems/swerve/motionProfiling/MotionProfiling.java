@@ -26,34 +26,34 @@ public class MotionProfiling {
     double iTotal;
     private static CommandGroup commGroup = new CommandGroup();
 
-    public MotionProfiling(Vector2d pos){
+    public MotionProfiling(Vector2d pos) {
         angle = 0;
         prevHeading = Robot.gyroSubsystem.getHeading();
         prevTime = System.currentTimeMillis();
         this.pos = pos;
         timeInit = prevTime;
-        for(int j = 0; j < I_SIZE; j++)
-                prevI.add(0d);
+        for (int j = 0; j < I_SIZE; j++)
+            prevI.add(0d);
 
     }
-    public MotionProfiling(){
+
+    public MotionProfiling() {
         readPts();
         prevTime = System.currentTimeMillis();
-        this.timeStepMillis = ((double)Points.CURVES_PER_SECOND)*((double)Points.POINTS_PER_CURVE);
+        this.timeStepMillis = ((double) Points.CURVES_PER_SECOND) * ((double) Points.POINTS_PER_CURVE);
         timeInit = prevTime;
         commands = Points.commands;
         pos = botPath[0];
         angle = botRot[0];
         prevHeading = Robot.gyroSubsystem.getHeading();
         commInd = 0;
-        for(int j = 0; j < I_SIZE; j++)
-                prevI.add(0d);
+        for (int j = 0; j < I_SIZE; j++)
+            prevI.add(0d);
     }
 
-
-    public void periodic(){
-        if(botPath != null){
-            int ind = (int)((System.currentTimeMillis() - timeInit)*timeStepMillis/1000);
+    public void periodic() {
+        if (botPath != null) {
+            int ind = (int) ((System.currentTimeMillis() - timeInit) * timeStepMillis / 1000);
             managePos(ind);
             manageAngle(ind);
             manageCommands();
@@ -64,99 +64,127 @@ public class MotionProfiling {
 
         double px = botX - pos.x;
         double py = botY - pos.y;
-        double il = (Math.abs(py) + Math.abs(px))*(time-prevTime);
+        double il = (Math.abs(py) + Math.abs(px)) * (time - prevTime);
         prevI.add(il);
         iTotal = il - prevI.remove(I_SIZE);
         double dx = FieldPosition.getBotXSpeed();
         double dy = FieldPosition.getBotYSpeed();
-       
-        
+
         double p = Points.pidValues[0];
-        double i = 0;  // not functional
+        double i = 0; // not functional
         double d = Points.pidValues[2];
 
-        double dl = d*Math.sqrt(dx*dx + dy*dy);
-        //Vector2d power = new Vector2d(px*p + dx*d + iTotal*i/1.4142, py*p + dy*d + iTotal*i/1.4142);
-        Vector2d power = new Vector2d(px*p + iTotal*i/1.4142, py*p + iTotal*i/1.4142);
+        double dl = d * Math.sqrt(dx * dx + dy * dy);
+        // Vector2d power = new Vector2d(px*p + dx*d + iTotal*i/1.4142, py*p + dy*d +
+        // iTotal*i/1.4142);
+        Vector2d power = new Vector2d(px * p + iTotal * i / 1.4142, py * p + iTotal * i / 1.4142);
         double a = Math.atan2(power.y, power.x);
-        
+
         double heading = Math.toRadians(Robot.gyroSubsystem.getHeading());
-        double anglePower =  heading - angle;
-        anglePower %= 2*Math.PI;
-        if(Math.abs(anglePower) > Math.PI)
-            anglePower += 2*Math.PI*(anglePower<0? 1: -1);
-        if(Math.abs(anglePower) > 1)
-            anglePower = (anglePower<0? -1: 1);
-        anglePower*=angP;
-        double angSpeed = (heading-prevHeading)/(time-prevTime)*angDeriv;
+        double anglePower = heading - angle;
+        anglePower %= 2 * Math.PI;
+        if (Math.abs(anglePower) > Math.PI)
+            anglePower += 2 * Math.PI * (anglePower < 0 ? 1 : -1);
+        if (Math.abs(anglePower) > 1)
+            anglePower = (anglePower < 0 ? -1 : 1);
+        anglePower *= angP;
+        double angSpeed = (heading - prevHeading) / (time - prevTime) * angDeriv;
         anglePower -= angSpeed;
-        
-        setBotPower(new Vector2d(power.x - dl*Math.cos(a), power.y - dl*Math.sin(a)), -anglePower);
+
+        setBotPower(new Vector2d(power.x - dl * Math.cos(a), power.y - dl * Math.sin(a)), -anglePower);
         prevTime = time;
         prevHeading = heading;
     }
-    private void managePos(int ind){
-        if(ind < botPath.length)
+
+    private void managePos(int ind) {
+        if (ind < botPath.length)
             pos = botPath[ind];
         // double dTime = ((double)(System.currentTimeMillis() - timeInit))/1000;
 
         // double duration = 5;
         // double radius = 2;
         // if(dTime < 60){
-        //     pos = new Vector2d(
-        //         radius*Math.sin(System.currentTimeMillis()/duration*Math.PI*2),
-        //         -radius*Math.cos(System.currentTimeMillis()/duration*Math.PI*2) + radius
-        //     );
+        // pos = new Vector2d(
+        // radius*Math.sin(System.currentTimeMillis()/duration*Math.PI*2),
+        // -radius*Math.cos(System.currentTimeMillis()/duration*Math.PI*2) + radius
+        // );
         // }
     }
-    private void manageAngle(int ind){
-        if(ind < botPath.length)
+
+    private void manageAngle(int ind) {
+        if (ind < botPath.length)
             angle = botRot[ind];
     }
-    private void manageCommands(){
-        if(commInd != commands.length && System.currentTimeMillis() > commands[commInd].getT()){
-            try{
-                commGroup.addSequential((Command)Class.forName("frc.team578.robot.commands." + commands[commInd].getName()).getDeclaredConstructor().newInstance());
+
+    private void manageCommands() {
+        if (commInd != commands.length && System.currentTimeMillis() > commands[commInd].getT()) {
+            try {
+                commGroup.addSequential(
+                        (Command) Class.forName("frc.team578.robot.commands." + commands[commInd].getName())
+                                .getDeclaredConstructor().newInstance());
                 commInd++;
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.err.println("Command class " + commands[commInd].getName() + " does not exist");
             }
         }
     }
-    private void setBotPower(Vector2d vec, double angle){
 
-        if(vec.magnitude() > 1)
-            vec = new Vector2d(vec.x/vec.magnitude(), vec.y/vec.magnitude());  // normalizing
+    private void setBotPower(Vector2d vec, double angle) {
+
+        if (vec.magnitude() > 1)
+            vec = new Vector2d(vec.x / vec.magnitude(), vec.y / vec.magnitude()); // normalizing
         Robot.swerveDriveSubsystem.swerveDriveCommand.setProfilingPowerX(vec.x);
         Robot.swerveDriveSubsystem.swerveDriveCommand.setProfilingPowerY(vec.y);
         Robot.swerveDriveSubsystem.swerveDriveCommand.setProfilingPowerA(angle);
 
     }
-    public void restart(){
+
+    public void restart() {
         timeInit = System.currentTimeMillis();
         commInd = 0;
         pos = botPath[0];
         angle = botRot[0];
     }
-    public void setPos(Vector2d pos){this.pos = pos;}
-    public Vector2d getPos(){return pos;}
 
-    private void readPts(){
-        botPath = new Vector2d[pathIn.length/3];
-        botRot = new double[pathIn.length/3];
-        for(int i = 0; i < pathIn.length/3; i++){
-            botPath[i] = new Vector2d(pathIn[3*i], pathIn[3*i + 1]);
-            botRot[i] = pathIn[3*i + 2];
+    public void setPos(Vector2d pos) {
+        this.pos = pos;
+    }
+
+    public Vector2d getPos() {
+        return pos;
+    }
+
+    private void readPts() {
+        botPath = new Vector2d[pathIn.length / 3];
+        botRot = new double[pathIn.length / 3];
+        for (int i = 0; i < pathIn.length / 3; i++) {
+            botPath[i] = new Vector2d(pathIn[3 * i], pathIn[3 * i + 1]);
+            botRot[i] = pathIn[3 * i + 2];
         }
     }
 
-
-    public static void resetProfiling(){
+    public static void resetProfiling() {
         Robot.swerveDriveSubsystem.swerveDriveCommand.setProfilingPowerX(0);
         Robot.swerveDriveSubsystem.swerveDriveCommand.setProfilingPowerY(0);
         Robot.swerveDriveSubsystem.swerveDriveCommand.setProfilingPowerA(0);
         Robot.motionProfiling.restart();
         FieldPosition.resetBotPosition();
         FieldPosition.resetBotSpeed();
+    }
+
+    public static double angPid(double angle) {
+
+        double angP = 1;
+
+        double heading = Math.toRadians(Robot.gyroSubsystem.getHeading());
+        double anglePower = heading - angle;
+        anglePower %= 2 * Math.PI;
+        if (Math.abs(anglePower) > Math.PI)
+            anglePower += 2 * Math.PI * (anglePower < 0 ? 1 : -1);
+        if (Math.abs(anglePower) > 1)
+            anglePower = (anglePower < 0 ? -1 : 1);
+        anglePower *= angP;
+
+        return anglePower;
     }
 }
