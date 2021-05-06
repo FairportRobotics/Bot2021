@@ -30,37 +30,37 @@ public class OI implements Initializable {
  //       ob1.one.whenPressed(new HookDeployCommand()); // Press to deploy hook
  //       ob2.one.whenPressed(new ClimberWinchUpCommand()); // Press to bring hook back downn
 
-        ob.getButton(3,3).whileHeld(new AgitatorSpinOutCommand());
-        ob.getButton(3,4).whileHeld(new AgitatorSpinInCommand());
+        //ob.getButton(3,3).whileHeld(new AgitatorSpinOutCommand());
+        //ob.getButton(3,4).whileHeld(new AgitatorSpinInCommand());
 
-//        ob1.two.whenPressed(new ClimberWinchBrakeExtendCommand()); // Press to extend winch brake
-//        ob2.two.whenPressed(new HookDeployReverseCommand()); // Press to retract winch brake
+        ob.getButton(1,4).whenPressed(new ClimberWinchBrakeExtendCommand()); // Press to extend winch brake
+        ob.getButton(1,3).whenPressed(new HookDeployReverseCommand()); // Press to retract winch brake
 
         // Intake commands
-        ob.getButton(4,3).whileHeld(new IntakeOutCommand()); // Hold to spin intake out
-        ob.getButton(4,4).whileHeld(new IntakeInCommand()); // Hold to spin intake in
-
+        //ob.getButton(4,3).whileHeld(new IntakeOutCommand()); // Hold to spin intake out
+        //ob.getButton(4,4).whileHeld(new IntakeInCommand()); // Hold to spin intake in
+//
         ob.getButton(2,2).whenPressed(new ShooterToDefaultRPMCommand());
         ob.getButton(3,2).whenPressed(new ShooterDebugStopCommand());
+//
+        //ob.getButton(1,4).whenPressed(new IntakeArmDownCommand());
+        //ob.getButton(1,3).whenPressed(new IntakeArmUpCommand());
 
-        ob.getButton(1,4).whenPressed(new IntakeArmDownCommand());
-        ob.getButton(1,3).whenPressed(new IntakeArmUpCommand());
+        ob.getButton(1,2).whileHeld(new ClimberTraverseLeft());
+        ob.getButton(1,1).whileHeld(new ClimberWinchUpCommand());
 
-//        ob1.four.whileHeld(new ClimberDebugWinchDownCommand());
-//        ob1.five.whileHeld(new ClimberWinchBrakeRetractCommand());
-
-        ob.getButton(2,3).whileHeld(new FeederInCommand());
-        ob.getButton(2,4).whileHeld(new FeederOutCommand());
+        //ob.getButton(2,3).whileHeld(new FeederInCommand());
+        //ob.getButton(2,4).whileHeld(new FeederOutCommand());
 
 
         // Shooter commands
 //        ob1.eight.whenPressed(new ShooterSingleShotCommand()); // Press to shoot one ball
 //        ob1.nine.whenPressed(new ToggleConveyorModeCommand()); // Hold to continuously shoot
 
-        ob.getButton(1,1).whenPressed(new ShooterToLowRPMCommand());
-        ob.getButton(2,1).whenPressed(new ShooterToDefaultRPMCommand());
-        ob.getButton(3,1).whenPressed(new ShooterToMediumRPMCommand());
-        ob.getButton(4,1).whenPressed(new ShooterToHighRPMCommand());
+        //ob.getButton(1,1).whenPressed(new ShooterToLowRPMCommand());
+        //ob.getButton(2,1).whenPressed(new ShooterToDefaultRPMCommand());
+        //ob.getButton(3,1).whenPressed(new ShooterToMediumRPMCommand());
+        //ob.getButton(4,1).whenPressed(new ShooterToHighRPMCommand());
 
         // Winch brake commands
 
