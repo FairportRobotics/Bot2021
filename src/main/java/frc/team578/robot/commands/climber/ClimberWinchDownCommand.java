@@ -6,29 +6,29 @@ import frc.team578.robot.Robot;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class ClimberDebugWinchDownCommand extends Command {
+public class ClimberWinchDownCommand extends Command {
 
-    private static final Logger log = LogManager.getLogger(ClimberDebugWinchDownCommand.class);
+    private static final Logger log = LogManager.getLogger(ClimberWinchDownCommand.class);
 
-    public ClimberDebugWinchDownCommand() {
+    public ClimberWinchDownCommand() {
         requires(Robot.climberSubsystem);
     }
 
     @Override
     protected void initialize() {
-        log.info("Initializing ClimberDebugWinchDownCommand");
+        log.info("Initializing ClimberWinchDownCommand");
     }
 
     @Override
     protected void execute() {
-        log.info("Exec ClimberDebugWinchDownCommand");
+        log.info("Exec ClimberWinchDownCommand");
         Robot.climberSubsystem.winchDown();
     }
 
 
     @Override
     protected void interrupted() {
-        log.info("Interrupted ClimberDebugWinchDownCommand");
+        log.info("Interrupted ClimberWinchDownCommand");
         Robot.climberSubsystem.winchStop();
     }
 
@@ -39,6 +39,6 @@ public class ClimberDebugWinchDownCommand extends Command {
 
     @Override
     protected void end() {
-        log.info("Ending ClimberDebugWinchDownCommand " + timeSinceInitialized());
+        log.info("Ending ClimberWinchDownCommand " + timeSinceInitialized());
     }
 }

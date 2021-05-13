@@ -6,29 +6,29 @@ import frc.team578.robot.Robot;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class ClimberWinchBrakeExtendCommand extends Command {
+public class ClimberWinchUnlockCommand extends Command {
 
-    private static final Logger log = LogManager.getLogger(ClimberWinchBrakeExtendCommand.class);
+    private static final Logger log = LogManager.getLogger(ClimberWinchUnlockCommand.class);
 
-    public ClimberWinchBrakeExtendCommand() {
+    public ClimberWinchUnlockCommand() {
         requires(Robot.climberSubsystem);
     }
 
     @Override
     protected void initialize() {
-        log.debug("Initializing ClimberWinchBrakeExtendCommand");
+        log.debug("Initializing ClimberWinchBrakeRetractCommand");
     }
 
     @Override
     protected void execute() {
-        log.debug("Exec ClimberWinchBrakeExtendCommand");
-        Robot.climberSubsystem.winchBrakeExtend();
+        log.debug("Exec ClimberWinchBrakeRetractCommand");
+        Robot.climberSubsystem.winchBrakeRetract();
     }
 
 
     @Override
     protected void interrupted() {
-        log.debug("Interrupted ClimberWinchBrakeExtendCommand");
+        log.debug("Interrupted ClimberWinchBrakeRetractCommand");
     }
 
     @Override
@@ -38,6 +38,6 @@ public class ClimberWinchBrakeExtendCommand extends Command {
 
     @Override
     protected void end() {
-        log.debug("Ending ClimberWinchBrakeExtendCommand " + timeSinceInitialized());
+        log.debug("Ending ClimberWinchBrakeRetractCommand " + timeSinceInitialized());
     }
 }

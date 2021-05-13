@@ -33,7 +33,7 @@ public class OI implements Initializable {
         //ob.getButton(3,3).whileHeld(new AgitatorSpinOutCommand());
         //ob.getButton(3,4).whileHeld(new AgitatorSpinInCommand());
 
-        ob.getButton(1,4).whenPressed(new ClimberWinchBrakeExtendCommand()); // Press to extend winch brake
+        ob.getButton(1,4).whenPressed(new ClimberWinchLockCommand()); // Press to extend winch brake
         ob.getButton(1,3).whenPressed(new HookDeployReverseCommand()); // Press to retract winch brake
 
         // Intake commands
@@ -41,7 +41,7 @@ public class OI implements Initializable {
         //ob.getButton(4,4).whileHeld(new IntakeInCommand()); // Hold to spin intake in
 //
         ob.getButton(2,2).whenPressed(new ShooterToDefaultRPMCommand());
-        ob.getButton(3,2).whenPressed(new ShooterDebugStopCommand());
+        ob.getButton(3,2).whenPressed(new ShooterStopCommand());
 //
         //ob.getButton(1,4).whenPressed(new IntakeArmDownCommand());
         //ob.getButton(1,3).whenPressed(new IntakeArmUpCommand());

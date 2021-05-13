@@ -6,29 +6,29 @@ import frc.team578.robot.Robot;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class ShooterDebugStopCommand extends Command {
+public class ShooterMaxRPMCommand extends Command {
 
-    private static final Logger log = LogManager.getLogger(ShooterDebugStopCommand.class);
+    private static final Logger log = LogManager.getLogger(ShooterMaxRPMCommand.class);
 
-    public ShooterDebugStopCommand() {
+    public ShooterMaxRPMCommand() {
         requires(Robot.shooterSubsystem);
     }
 
     @Override
     protected void initialize() {
-        log.info("Initializing ShooterDebugStopCommand");
+        log.info("Initializing ShooterShootAllCommand");
     }
 
     @Override
     protected void execute() {
-        log.info("Exec ShooterDebugStopCommand");
-        Robot.shooterSubsystem.stop();
+        log.info("Exec ShooterShootAllCommand");
+        Robot.shooterSubsystem.spinToMaxRPM();
     }
 
 
     @Override
     protected void interrupted() {
-        log.info("Interrupted ShooterDebugStopCommand");
+        log.info("Interrupted ShooterShootAllCommand");
     }
 
     @Override
@@ -38,6 +38,6 @@ public class ShooterDebugStopCommand extends Command {
 
     @Override
     protected void end() {
-        log.info("Ending ShooterDebugStopCommand " + timeSinceInitialized());
+        log.info("Ending ShooterShootAllCommand " + timeSinceInitialized());
     }
 }

@@ -24,9 +24,6 @@ public class RobotMap {
 
 
 
-    // Climber
-
-
     // Intake / Feeder
     public static final int INTAKE_TALON = 3;
     public static final int AGITATOR_TALON = 2;
