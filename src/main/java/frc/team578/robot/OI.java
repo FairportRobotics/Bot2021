@@ -76,8 +76,8 @@ public class OI implements Initializable {
         LEFT.whileHeld(new ClimberTraverseLeft());
         RIGHT.whileHeld(new ClimberTraverseRight());
 
-        UP.whileHeld(new ShooterMoveRPMUpCommand());
-        DOWN.whileHeld(new ShooterMoveRPMDownCommand());
+        UP.whileHeld(new ClimberWinchUpCommand());
+        DOWN.whileHeld(new ClimberWinchDownCommand());
     }
 
 }
