@@ -6,11 +6,11 @@ import frc.team578.robot.Robot;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class HookDeployReverseCommand extends Command {
+public class HookRetractCommand extends Command {
 
-    private static final Logger log = LogManager.getLogger(HookDeployReverseCommand.class);
+    private static final Logger log = LogManager.getLogger(HookRetractCommand.class);
 
-    public HookDeployReverseCommand() {
+    public HookRetractCommand() {
         requires(Robot.climberSubsystem);
     }
 

@@ -24,7 +24,6 @@ public class Robot extends TimedRobot {
     public static IntakeSubsystem intakeSubsystem;
     public static ShooterSubsystem shooterSubsystem;
     public static ClimberSubsystem climberSubsystem;
-    public static SpinnerSubsystem spinnerSubsystem;
     public static GyroSubsystem gyroSubsystem;
     public static UsbCamera camera;
     public static FeederSubsystem feederSubsystem;
