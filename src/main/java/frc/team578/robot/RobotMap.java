@@ -32,7 +32,7 @@ public class RobotMap {
     public static final int PCM1 = 4;
     public static final int PCM1_INTAKE_UP = 3;
     public static final int PCM1_INTAKE_DOWN = 2;
-    public static final int TRAVERSE_TALON = 99;
+    public static final int TRAVERSE_TALON = 0;
     public static final int WINCH_TALON = 5;
     public static final int PCM1_CLIMBER_UP = 7;
     public static final int PCM1_CLIMBER_DOWN = 6;

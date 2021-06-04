@@ -59,18 +59,18 @@ public class OI implements Initializable {
 
         ob.getButton(1,3).whenPressed(new IntakeArmUpCommand());
         ob.getButton(1,4).whenPressed(new IntakeArmDownCommand());
-        ob.getButton(4,3).whenPressed(new IntakeOutCommand());
-        ob.getButton(4,4).whenPressed(new IntakeInCommand());
+        ob.getButton(4,3).whileHeld(new IntakeOutCommand());
+        ob.getButton(4,4).whileHeld(new IntakeInCommand());
 
         // Feeder
         
-        ob.getButton(2,3).whenPressed(new FeederInCommand());
-        ob.getButton(2,4).whenPressed(new FeederOutCommand());
+        ob.getButton(2,3).whileHeld(new FeederInCommand());
+        ob.getButton(2,4).whileHeld(new FeederOutCommand());
 
         // Agitator
         
-        ob.getButton(3,3).whenPressed(new AgitatorSpinOutCommand());
-        ob.getButton(3,4).whenPressed(new AgitatorSpinInCommand());
+        ob.getButton(3,3).whileHeld(new AgitatorSpinOutCommand());
+        ob.getButton(3,4).whileHeld(new AgitatorSpinInCommand());
 
 
     }
