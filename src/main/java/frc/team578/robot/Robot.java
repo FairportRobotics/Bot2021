@@ -88,7 +88,6 @@ public class Robot extends TimedRobot {
 
     @Override
     public void robotPeriodic() {
-
         Scheduler.getInstance().run();
     }
 
@@ -97,12 +96,7 @@ public class Robot extends TimedRobot {
     public void autonomousInit() {
 
         Robot.swerveDriveSubsystem.stop();
-
         MotionProfiling.resetProfiling();
-
-        /*
-          TODO : Do we want to lower the arm at the beginning (or is this manual)
-         */
 
         DriverStation.Alliance color = DriverStation.getInstance().getAlliance();
         log.info("Alliance Color [" + color.name() + "]");
@@ -114,8 +108,11 @@ public class Robot extends TimedRobot {
 
         updateAllDashboards();
         Scheduler.getInstance().run();
-        FieldPosition.periodic();
-        motionProfiling.periodic();
+
+        /*  FieldPosition.periodic();
+        motionProfiling.periodic();*/
+
+        //Those two are the autonomous commands
     }
 
     @Override
@@ -126,21 +123,12 @@ public class Robot extends TimedRobot {
         MotionProfiling.resetProfiling();
 
     }
-
     @Override
     public void teleopPeriodic() {
         updateAllDashboards();
         Scheduler.getInstance().run();
     }
 
-    @Override
-    public void testInit() {
-    }
-
-    @Override
-    public void testPeriodic() {
-        Scheduler.getInstance().run();
-    }
 
     @Override
     public void disabledInit() {
@@ -156,6 +144,8 @@ public class Robot extends TimedRobot {
         updateAllDashboards();
         Scheduler.getInstance().run();
     }
+
+
 
 
     public void updateAllDashboards() {

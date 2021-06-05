@@ -18,8 +18,20 @@ public class OI implements Initializable {
     int JOYSTICK_TRIGGER_BUTTON_NUMBER = 1;
     JoystickButton leftTrigger = new JoystickButton(leftJoystick, JOYSTICK_TRIGGER_BUTTON_NUMBER);
     JoystickButton rightTrigger = new JoystickButton(rightJoystick, JOYSTICK_TRIGGER_BUTTON_NUMBER);
+    JoystickButton rightJoystick3 = new JoystickButton(rightJoystick, 3);
 
     public void initialize() {
+
+
+        /* Driver */
+
+        //RobotMode Commands
+
+        //swapped IF port 2/3 is swapped
+
+        leftTrigger.whenPressed(new CentricModeRobotCommand());
+        rightTrigger.whenPressed(new CentricModeFieldCommand());
+        rightJoystick3.whenPressed(new CentricModeFieldCommand());
 
         /* Operator */
 
@@ -44,7 +56,9 @@ public class OI implements Initializable {
         // Climber
 
         ob.getButton(1,1).whenPressed(new HookDeployCommand());
-        ob.getButton(2,1).whenPressed(new ClimberWinchLockCommand());
+        ob.getButton(2,1).whe
+
+    nPressed(new ClimberWinchLockCommand());
         ob.getButton(3,1).whenPressed(new ClimberWinchUnlockCommand());
         ob.getButton(1,2).whenPressed(new HookRetractCommand());
 
