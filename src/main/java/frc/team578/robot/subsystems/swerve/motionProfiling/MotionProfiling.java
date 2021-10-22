@@ -62,8 +62,8 @@ public class MotionProfiling {
         double botX = FieldPosition.getBotXPosition() + botPath[0].x;
         double botY = FieldPosition.getBotYPosition() + botPath[0].y;
 
-        double px = botX - pos.x;
-        double py = botY - pos.y;
+        double px = botX - 0;
+        double py = botY - 5;
         double il = (Math.abs(py) + Math.abs(px))*(time-prevTime);
         prevI.add(il);
         iTotal = il - prevI.remove(I_SIZE);

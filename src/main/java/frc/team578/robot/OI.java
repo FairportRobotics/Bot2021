@@ -56,9 +56,7 @@ public class OI implements Initializable {
         // Climber
 
         ob.getButton(1,1).whenPressed(new HookDeployCommand());
-        ob.getButton(2,1).whe
-
-    nPressed(new ClimberWinchLockCommand());
+        ob.getButton(2,1).whenPressed(new ClimberWinchLockCommand());
         ob.getButton(3,1).whenPressed(new ClimberWinchUnlockCommand());
         ob.getButton(1,2).whenPressed(new HookRetractCommand());
 
