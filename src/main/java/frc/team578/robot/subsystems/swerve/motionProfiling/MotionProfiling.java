@@ -62,8 +62,8 @@ public class MotionProfiling {
         double botX = FieldPosition.getBotXPosition() + botPath[0].x;
         double botY = FieldPosition.getBotYPosition() + botPath[0].y;
 
-        double px = botX - 0;
-        double py = botY - 5;
+        double px = botX - pos.x;
+        double py = botY - pos.y;
         double il = (Math.abs(py) + Math.abs(px))*(time-prevTime);
         prevI.add(il);
         iTotal = il - prevI.remove(I_SIZE);
@@ -90,14 +90,15 @@ public class MotionProfiling {
         anglePower*=angP;
         double angSpeed = (heading-prevHeading)/(time-prevTime)*angDeriv;
         anglePower -= angSpeed;
-        
-        setBotPower(new Vector2d(power.x - dl*Math.cos(a), power.y - dl*Math.sin(a)), -anglePower);
+        System.out.println(power);
+        setBotPower(new Vector2d(power.x, power.y), 0);
         prevTime = time;
         prevHeading = heading;
     }
     private void managePos(int ind){
         if(ind < botPath.length)
-            pos = botPath[ind];
+            //pos = botPath[ind];
+            pos = new Vector2d(0,5);
         // double dTime = ((double)(System.currentTimeMillis() - timeInit))/1000;
 
         // double duration = 5;

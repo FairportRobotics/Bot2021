@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.shuffleboard.EventImportance;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import frc.team578.robot.subsystems.*;
+import frc.team578.robot.commands.*;
 import frc.team578.robot.subsystems.swerve.motionProfiling.FieldPosition;
 import frc.team578.robot.subsystems.swerve.motionProfiling.MotionProfiling;
 import org.apache.logging.log4j.LogManager;
@@ -29,7 +30,7 @@ public class Robot extends TimedRobot {
     public static FeederSubsystem feederSubsystem;
     public static MotionProfiling motionProfiling;
 
-
+    private long startTime = 0;
 
     @Override
     public void robotInit() {
@@ -41,6 +42,7 @@ public class Robot extends TimedRobot {
 
             gyroSubsystem = new GyroSubsystem("gyro");
             gyroSubsystem.initialize();
+            gyroSubsystem.reset();
             log.info("Gyro Subsystem Initialized");
 
             swerveDriveSubsystem = new SwerveDriveSubsystem();
@@ -95,12 +97,13 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
 
-        Robot.swerveDriveSubsystem.stop();
+        //Robot.swerveDriveSubsystem.stop();
         MotionProfiling.resetProfiling();
 
         DriverStation.Alliance color = DriverStation.getInstance().getAlliance();
         log.info("Alliance Color [" + color.name() + "]");
 
+        startTime = System.currentTimeMillis();
     }
 
     @Override
@@ -109,8 +112,16 @@ public class Robot extends TimedRobot {
         updateAllDashboards();
         Scheduler.getInstance().run();
 
-        /*  FieldPosition.periodic();
+        /*FieldPosition.periodic();
         motionProfiling.periodic();*/
+
+        if (startTime - System.currentTimeMillis() < 1000){
+            runCommand.start();
+        } else {
+            runCommand.stop();
+        }
+
+        AutonomousRunCommand runCommand = new AutonomousRunCommand();
 
         //Those two are the autonomous commands
     }
