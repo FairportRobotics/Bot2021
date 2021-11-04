@@ -115,13 +115,9 @@ public class Robot extends TimedRobot {
         /*FieldPosition.periodic();
         motionProfiling.periodic();*/
 
-        if (startTime - System.currentTimeMillis() < 1000){
+        AutonomousRunCommand runCommand = new AutonomousRunCommand(startTime - System.currentTimeMillis() > -1000);
             runCommand.start();
-        } else {
-            runCommand.stop();
-        }
 
-        AutonomousRunCommand runCommand = new AutonomousRunCommand();
 
         //Those two are the autonomous commands
     }

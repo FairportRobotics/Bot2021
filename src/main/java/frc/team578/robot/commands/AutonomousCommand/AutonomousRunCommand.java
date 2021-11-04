@@ -6,8 +6,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class AutonomousRunCommand extends Command {
+    boolean firstSecond;
+    public AutonomousRunCommand(boolean firstSecond) {
+        this.firstSecond = firstSecond;
 
-    public AutonomousRunCommand() {
         requires(Robot.swerveDriveSubsystem);
     }
 
@@ -19,8 +21,11 @@ public class AutonomousRunCommand extends Command {
     protected void execute() {
 
 
-
-        Robot.swerveDriveSubsystem.move(-.5,0,0,0);
+        if (firstSecond) {
+            Robot.swerveDriveSubsystem.move(-.5, 0, 0, 0);
+        } else {
+            Robot.swerveDriveSubsystem.move(0,0,0,0);
+        }
     }
 
     @Override
