@@ -1,4 +1,4 @@
-package frc.team578.robot.commands;
+package frc.team578.robot.commands.shooter;
 
 import edu.wpi.first.wpilibj.command.TimedCommand;
 import frc.team578.robot.Robot;

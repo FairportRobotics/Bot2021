@@ -1,4 +1,4 @@
-package frc.team578.robot.commands.debug;
+package frc.team578.robot.commands.shooter;
 
 
 import edu.wpi.first.wpilibj.command.Command;

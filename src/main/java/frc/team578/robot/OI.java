@@ -2,8 +2,10 @@ package frc.team578.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.team578.robot.commands.*;
 import frc.team578.robot.commands.debug.*;
+import frc.team578.robot.commands.swerve.*;
+import frc.team578.robot.commands.intake.*;
+import frc.team578.robot.commands.shooter.*;
 import frc.team578.robot.subsystems.interfaces.Initializable;
 import frc.team578.robot.utils.AnalogJoystickButton;
 import frc.team578.robot.utils.OperatorBox;
@@ -44,21 +46,6 @@ public class OI implements Initializable {
                 RIGHT = new AnalogJoystickButton(ob.getAnalogJoystick(), 0, 1),
                 UP = new AnalogJoystickButton(ob.getAnalogJoystick(), 1, -1),
                 DOWN = new AnalogJoystickButton(ob.getAnalogJoystick(), 1, 1);
-
-        LEFT.whileHeld(new ClimberTraverseLeft());
-        RIGHT.whileHeld(new ClimberTraverseRight());
-
-        UP.whileHeld(new ClimberWinchUpCommand());
-        DOWN.whileHeld(new ClimberWinchDownCommand());
-
-        // Big Boi
-
-        // Climber
-
-        ob.getButton(1,1).whenPressed(new HookDeployCommand());
-        ob.getButton(2,1).whenPressed(new ClimberWinchLockCommand());
-        ob.getButton(3,1).whenPressed(new ClimberWinchUnlockCommand());
-        ob.getButton(1,2).whenPressed(new HookRetractCommand());
 
         // Shooter
 

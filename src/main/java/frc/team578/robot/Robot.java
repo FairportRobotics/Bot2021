@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.shuffleboard.EventImportance;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import frc.team578.robot.subsystems.*;
-import frc.team578.robot.commands.*;
+import frc.team578.robot.commands.AutonomousCommand.AutonomousRunCommand;
 import frc.team578.robot.subsystems.swerve.motionProfiling.FieldPosition;
 import frc.team578.robot.subsystems.swerve.motionProfiling.MotionProfiling;
 import org.apache.logging.log4j.LogManager;

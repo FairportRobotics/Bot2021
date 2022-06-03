@@ -1,7 +1,6 @@
 package frc.team578.robot.subsystems.swerve.motionProfiling;
 
 import java.util.ArrayList;
-import frc.team578.robot.commands.*;
 
 public class Points{
 	public static final double CURVES_PER_SECOND = .2;

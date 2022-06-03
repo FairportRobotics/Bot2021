@@ -1,4 +1,4 @@
-package frc.team578.robot.commands;
+package frc.team578.robot.commands.AutonomousCommand;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.team578.robot.Robot;
